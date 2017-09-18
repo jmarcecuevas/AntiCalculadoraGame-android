@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">MyAntiCalculadora</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="play">Jugar</string>
+    <string name="ranking">Ranking</string>
+    <string name="settings">Ajustes</string>
+    <string name="exit">Salir</string>
+    <string name="music">Music</string>
+    <string name="sounds">Sounds</string>
+    <string name="vibration">Vibration</string>
+    <string name="game">Game</string>
+    <string name="level">Nivel</string>
+    <string name="anti">ANTI</string>
+    <string name="calculator">CALCULADORA</string>
+    <string name="go">GO!</string>
+    <string name="allowedOperators">Operadores permitidos:</string>
+    <string name="userLostTitle">HAS PERDIDO!!!</string>
+    <string name="retry">REINTENTAR</string>
+    <string name="userWon">Felicitaciones, has logrado completar tu mision.</string>
+    <string name="userWonTitle">FELICITACIONES, HAS GANADO!!!</string>
+    <string name="goOn">Continuar</string>
+</resources>

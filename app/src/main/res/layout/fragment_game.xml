@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/backgrounddd"
+        android:scaleType="centerCrop"
+        android:alpha="1"/>
+
+    <RelativeLayout
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="10%"
+        android:id="@+id/header_container"
+        android:paddingEnd="4dp"
+        android:paddingStart="4dp"
+        android:background="@android:color/holo_blue_dark"
+        android:alpha="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/clock"
+            android:layout_toStartOf="@+id/time"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_action_clock"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:id="@+id/time"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="180"
+            android:textColor="@color/orange"
+            android:textStyle="bold"/>
+
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/kids_math"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/levelTV"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:textColor="#ffffff"
+            android:text="@string/level"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:paddingStart="5dp"
+            android:textSize="24sp"
+            android:textColor="@color/orange"
+            android:layout_toRightOf="@+id/levelTV"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="30%"
+        android:id="@+id/title_container"
+        android:layout_below="@+id/header_container"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/randomNumberTV"
+            android:textSize="70sp"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            fontPath="fonts/Jelly Crazies.ttf"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        app:layout_widthPercent="80%"
+        app:layout_heightPercent="50%"
+        android:id="@+id/calculator_container"
+        android:layout_below="@+id/title_container"
+        android:layout_centerHorizontal="true">
+
+        <include layout="@layout/calculator"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        app:layout_widthPercent="80%"
+        app:layout_heightPercent="50%"
+        android:layout_below="@+id/calculator_container"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:id="@+id/allowedOperators"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:text="Operadores permitidos: +,/"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+
+
+
+</android.support.percent.PercentRelativeLayout>
