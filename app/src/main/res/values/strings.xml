@@ -15,7 +15,7 @@
     <string name="anti">ANTI</string>
     <string name="calculator">CALCULADORA</string>
     <string name="go">GO!</string>
-    <string name="allowedOperators">Operadores permitidos:</string>
+    <string name="allowedOperators">Operadores que debes usar:</string>
     <string name="userLostTitle">HAS PERDIDO!!!</string>
     <string name="retry">REINTENTAR</string>
     <string name="userWon">Felicitaciones, has logrado completar tu mision.</string>

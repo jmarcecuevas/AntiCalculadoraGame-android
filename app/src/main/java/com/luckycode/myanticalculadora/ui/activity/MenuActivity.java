@@ -1,24 +1,20 @@
 package com.luckycode.myanticalculadora.ui.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.luckycode.myanticalculadora.R;
-import com.luckycode.myanticalculadora.callbacks.MenuListener;
+import com.luckycode.myanticalculadora.listeners.MenuListener;
 import com.luckycode.myanticalculadora.common.LuckyActivity;
 import com.luckycode.myanticalculadora.ui.fragment.MenuFragment;
+import com.luckycode.myanticalculadora.utils.MusicManager;
 
 public class MenuActivity extends LuckyActivity implements MenuListener{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     protected void init() {
-
+      MusicManager.start(this,0,false);
     }
 
     @Override
@@ -54,4 +50,13 @@ public class MenuActivity extends LuckyActivity implements MenuListener{
         replaceFragmentWithBackStack(fragment,true);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }

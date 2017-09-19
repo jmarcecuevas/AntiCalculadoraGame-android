@@ -41,10 +41,9 @@ public class GameFragment extends LuckyFragment implements GameView{
     @BindView(R.id.tv_show)TextView tvShow;
     @BindView(R.id.randomNumberTV)TextView randomNumberTV;
     @BindView(R.id.allowedOperators)TextView allowedOperators;
+    @BindView(R.id.time)TextView timeTextView;
+    @BindView(R.id.levelTV)TextView levelTV;
     private GamePresenter gamePresenter;
-    private List<String> operators;
-    private int randomNumber;
-    private String expression="";
 
     @Override
     protected int layout() {
@@ -54,48 +53,61 @@ public class GameFragment extends LuckyFragment implements GameView{
     @Override
     protected void init() {
         gamePresenter = new GamePresenter(this);
-        randomNumber=gamePresenter.generateRandomNumber();
-        randomNumberTV.setText(String.valueOf(randomNumber));
-        operators=gamePresenter.generateAllowedOperators();
-        allowedOperators.setText(getString(R.string.allowedOperators)+" "+
-            gamePresenter.getOperatorsString(operators));
-        setInitialButtonsState();
+        gamePresenter.startGame();
     }
 
     @OnClick({R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,
             R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8,R.id.btn9})
     public void numberClicked(Button button){
-        gamePresenter.handleNumberInput(expression,button.getText().toString());
+        gamePresenter.handleNumberInput(button.getText().toString());
     }
 
     @OnClick({R.id.btn_add,R.id.btn_sub,R.id.btn_mul,R.id.btn_div})
     public void operatorClicked(Button button){
-        gamePresenter.handleOperatorInput(expression,button.getText().toString());
+        gamePresenter.handleOperatorInput(button.getText().toString());
     }
 
     @OnClick(R.id.btn_clear)
     public void clear(){
-        expression="";
-        tvShow.setText(expression);
+        gamePresenter.clearInput();
+        tvShow.setText("");
     }
 
     @OnClick(R.id.btn_equal)
     public void go(){
-        gamePresenter.evaluateFinalInput(expression);
-    }
-
-    public void setInitialButtonsState(){
-        for(Button button:operatorButtons){
-            if(!operators.contains(button.getText())){
-                button.setClickable(false);
-                button.setAlpha(0.4f);
-            }
-        }
+        gamePresenter.evaluateFinalInput();
     }
 
     @Override
-    public void onValidInput(String character) {
-        expression+=character;
+    public void setInitialButtonsState(List<String>operators){
+        for(Button button:operatorButtons)
+            if(!operators.contains(button.getText())){
+                button.setClickable(false);
+                button.setAlpha(0.4f);
+            }else{
+                button.setClickable(true);
+                button.setAlpha(1.0f);
+            }
+    }
+
+    @Override
+    public void setInitialOperatorsText(String operators) {
+        allowedOperators.setText(getString(R.string.allowedOperators)+" "+
+                operators);
+    }
+
+    @Override
+    public void showLevelNumber(int levelNumber) {
+        levelTV.setText(String.valueOf(levelNumber));
+    }
+
+    @Override
+    public void showNumberToPlay(int number) {
+        randomNumberTV.setText(String.valueOf(number));
+    }
+
+    @Override
+    public void onValidInput(String expression) {
         tvShow.setText(expression);
     }
 
@@ -106,7 +118,8 @@ public class GameFragment extends LuckyFragment implements GameView{
 
     @Override
     public void onInputReadyToBeCalculated(String expression) {
-        gamePresenter.calculateExpression(expression,operators);
+        Log.e("INPUT","READY TO BE CALCULATED");
+        gamePresenter.evalExpression();
     }
 
     @Override
@@ -117,34 +130,43 @@ public class GameFragment extends LuckyFragment implements GameView{
     @Override
     public void showResult(String number) {
         tvShow.setText(number);
-        gamePresenter.compareInputWithGameNumber(randomNumber, Integer.valueOf(number));
+        gamePresenter.compareInputWithGameNumber();
     }
 
     @Override
     public void userWon() {
-        new AlertDialog.Builder(getContext())
-                .setCancelable(false)
-                .setMessage(getString(R.string.userWon))
-                .setTitle(getString(R.string.userWonTitle))
-                .setPositiveButton(getString(R.string.goOn), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        getActivity().recreate();
-                    }
-                }).show();
+        if(!getActivity().isFinishing())
+            new AlertDialog.Builder(getContext())
+                    .setCancelable(false)
+                    .setMessage(getString(R.string.userWon))
+                    .setTitle(getString(R.string.userWonTitle))
+                    .setPositiveButton(getString(R.string.goOn), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            clear();
+                            gamePresenter.advanceToNewLevel();
+                        }
+                    }).show();
     }
 
     @Override
     public void showUserLostMessage(String message) {
-        new AlertDialog.Builder(getContext())
-                .setCancelable(false)
-                .setMessage(message)
-                .setTitle(getString(R.string.userLostTitle))
-                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        getActivity().recreate();
-                    }
-                }).show();
+        if(!getActivity().isFinishing())
+            new AlertDialog.Builder(getContext())
+                    .setCancelable(false)
+                    .setMessage(message)
+                    .setTitle(getString(R.string.userLostTitle))
+                    .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            clear();
+                            gamePresenter.restartGame();
+                        }
+                    }).show();
+    }
+
+    @Override
+    public void updateTime(int time) {
+        timeTextView.setText(String.valueOf(time));
     }
 }

@@ -1,8 +1,7 @@
 package com.luckycode.myanticalculadora.ui.fragment;
 
-import android.animation.Animator;
 import android.content.Context;
-import android.util.Log;
+import android.media.MediaPlayer;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -10,8 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.luckycode.myanticalculadora.R;
-import com.luckycode.myanticalculadora.callbacks.MenuListener;
+import com.luckycode.myanticalculadora.listeners.MenuListener;
 import com.luckycode.myanticalculadora.common.LuckyFragment;
+import com.luckycode.myanticalculadora.utils.MusicManager;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -46,6 +46,7 @@ public class MenuFragment extends LuckyFragment{
 
     @OnClick({R.id.play,R.id.ranking,R.id.settings,R.id.exit})
     public void onClick(View view){
+        MusicManager.start(getActivity(),3,true);
         switch (view.getId()){
             case R.id.play:
                 menuListener.play();

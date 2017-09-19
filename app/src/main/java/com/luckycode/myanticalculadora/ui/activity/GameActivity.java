@@ -11,6 +11,7 @@ import com.luckycode.myanticalculadora.R;
 import com.luckycode.myanticalculadora.common.LuckyActivity;
 import com.luckycode.myanticalculadora.ui.fragment.GameFragment;
 import com.luckycode.myanticalculadora.ui.fragment.SettingsFragment;
+import com.luckycode.myanticalculadora.utils.MusicManager;
 
 import butterknife.BindView;
 
@@ -55,7 +56,13 @@ public class GameActivity extends LuckyActivity implements BottomNavigationView.
         return false;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }

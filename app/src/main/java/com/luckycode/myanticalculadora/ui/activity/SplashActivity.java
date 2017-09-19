@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -39,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         };
+
 
         // Simulate a long loading process on application startup.
         Timer timer = new Timer();

@@ -1,8 +1,4 @@
-package com.luckycode.myanticalculadora.callbacks;
-
-import android.support.v4.app.Fragment;
-
-import com.luckycode.myanticalculadora.ui.fragment.SettingsFragment;
+package com.luckycode.myanticalculadora.listeners;
 
 /**
  * Created by marcelocuevas on 9/16/17.
