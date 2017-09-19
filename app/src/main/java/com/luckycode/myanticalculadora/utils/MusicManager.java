@@ -18,41 +18,29 @@ import java.util.HashMap;
 public class MusicManager {
     private static final String TAG = "MusicManager";
 
-    public static final int MUSIC_PREVIOUS = -1;
-    public static final int MUSIC_MENU = 0;
-    public static final int MUSIC_WON = 1;
-    public static final int MUSIC_GAMEOVER=2;
-    public static final int MUSIC_SWIPE=3;
+    private static final int MUSIC_PREVIOUS = -1;
+    private static final int MUSIC_MENU = 0;
+    private static final int MUSIC_WON = 1;
+    private static final int MUSIC_GAMEOVER=2;
+    private static final int MUSIC_SWIPE=3;
+    private static final int MUSIC_ERROR=4;
 
-    private static HashMap players = new HashMap();
+    private static HashMap players = new HashMap<Integer,MediaPlayer>();
     private static int currentMusic = -1;
     private static int previousMusic = -1;
 
-    public static void start(Context context, int music) {
-        start(context, music, false);
-    }
 
-    public static void start(Context context, int music, boolean force) {
+    public static void start(Context context, int music, boolean force,boolean looped) {
         if (!force && currentMusic > -1) {
-            // already playing some music and not forced to change
             return;
         }
         if (music == MUSIC_PREVIOUS) {
-            Log.d(TAG, "Using previous music [" + previousMusic + "]");
             music = previousMusic;
-        }
-        if (currentMusic == music) {
-            // already playing this music
-            return;
         }
         if (currentMusic != -1) {
             previousMusic = currentMusic;
-            Log.d(TAG, "Previous music was [" + previousMusic + "]");
-            // playing some other music, pause it and change
-            //pause();
         }
         currentMusic = music;
-        Log.d(TAG, "Current music is now [" + currentMusic + "]");
         MediaPlayer mp = (MediaPlayer) players.get(music);
         if (mp != null) {
             if (!mp.isPlaying()) {
@@ -67,12 +55,14 @@ public class MusicManager {
                 mp = MediaPlayer.create(context, R.raw.game_over);
             } else if(music==MUSIC_SWIPE) {
                 mp = MediaPlayer.create(context, R.raw.swipe);
+            }else if(music==MUSIC_ERROR){
+                mp=MediaPlayer.create(context,R.raw.error);
             }else{
                 Log.e(TAG, "unsupported music number - " + music);
                 return;
             }
             players.put(music, mp);
-            mp.setLooping(true);
+            mp.setLooping(looped);
             mp.start();
         }
     }
@@ -93,4 +83,12 @@ public class MusicManager {
         Log.d(TAG, "Current music is now [" + currentMusic + "]");
     }
 
+    public static void pause(int music){
+        Collection<MediaPlayer> mps = players.values();
+        for (MediaPlayer p : mps) {
+            if (players.get(music).equals(p)){
+                p.pause();
+            }
+        }
+    }
 }

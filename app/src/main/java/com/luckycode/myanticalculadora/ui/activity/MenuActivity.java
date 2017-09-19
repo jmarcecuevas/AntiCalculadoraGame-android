@@ -14,7 +14,7 @@ public class MenuActivity extends LuckyActivity implements MenuListener{
 
     @Override
     protected void init() {
-      MusicManager.start(this,0,false);
+      MusicManager.start(this,0,false,true);
     }
 
     @Override

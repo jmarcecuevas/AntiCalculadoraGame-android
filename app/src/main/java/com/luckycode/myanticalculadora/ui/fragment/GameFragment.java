@@ -5,12 +5,14 @@ import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.TextView;
 
 import com.luckycode.myanticalculadora.R;
 import com.luckycode.myanticalculadora.common.LuckyFragment;
 import com.luckycode.myanticalculadora.presenter.GamePresenter;
 import com.luckycode.myanticalculadora.ui.viewModel.GameView;
+import com.luckycode.myanticalculadora.utils.MusicManager;
 import com.udojava.evalex.Expression;
 
 import org.xml.sax.InputSource;
@@ -59,22 +61,26 @@ public class GameFragment extends LuckyFragment implements GameView{
     @OnClick({R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,
             R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8,R.id.btn9})
     public void numberClicked(Button button){
+        MusicManager.start(getActivity(),3,true,false);
         gamePresenter.handleNumberInput(button.getText().toString());
     }
 
     @OnClick({R.id.btn_add,R.id.btn_sub,R.id.btn_mul,R.id.btn_div})
     public void operatorClicked(Button button){
+        MusicManager.start(getActivity(),3,true,false);
         gamePresenter.handleOperatorInput(button.getText().toString());
     }
 
     @OnClick(R.id.btn_clear)
     public void clear(){
+        MusicManager.start(getActivity(),3,true,false);
         gamePresenter.clearInput();
         tvShow.setText("");
     }
 
     @OnClick(R.id.btn_equal)
     public void go(){
+        MusicManager.start(getActivity(),3,true,false);
         gamePresenter.evaluateFinalInput();
     }
 
@@ -113,18 +119,17 @@ public class GameFragment extends LuckyFragment implements GameView{
 
     @Override
     public void onInvalidInput() {
-        Log.e("INVALID","INPUT");
+        MusicManager.start(getActivity(),4,true,false);
     }
 
     @Override
     public void onInputReadyToBeCalculated(String expression) {
-        Log.e("INPUT","READY TO BE CALCULATED");
         gamePresenter.evalExpression();
     }
 
     @Override
     public void onWrongInputToBeCalculated() {
-        Log.e("NO SE PUEDE","CALCULAR");
+        MusicManager.start(getActivity(),4,true,false);
     }
 
     @Override
@@ -135,6 +140,8 @@ public class GameFragment extends LuckyFragment implements GameView{
 
     @Override
     public void userWon() {
+        MusicManager.pause(0);
+        MusicManager.start(getActivity(),1,true,false);
         if(!getActivity().isFinishing())
             new AlertDialog.Builder(getContext())
                     .setCancelable(false)
@@ -144,6 +151,7 @@ public class GameFragment extends LuckyFragment implements GameView{
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             clear();
+                            MusicManager.start(getActivity(),0,true,true);
                             gamePresenter.advanceToNewLevel();
                         }
                     }).show();
@@ -151,6 +159,8 @@ public class GameFragment extends LuckyFragment implements GameView{
 
     @Override
     public void showUserLostMessage(String message) {
+        MusicManager.pause(0);
+        MusicManager.start(getActivity(),2,true,false);
         if(!getActivity().isFinishing())
             new AlertDialog.Builder(getContext())
                     .setCancelable(false)
@@ -159,6 +169,7 @@ public class GameFragment extends LuckyFragment implements GameView{
                     .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            MusicManager.start(getActivity(),0,true,true);
                             clear();
                             gamePresenter.restartGame();
                         }

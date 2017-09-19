@@ -46,7 +46,7 @@ public class MenuFragment extends LuckyFragment{
 
     @OnClick({R.id.play,R.id.ranking,R.id.settings,R.id.exit})
     public void onClick(View view){
-        MusicManager.start(getActivity(),3,true);
+        MusicManager.start(getActivity(),3,true,false);
         switch (view.getId()){
             case R.id.play:
                 menuListener.play();

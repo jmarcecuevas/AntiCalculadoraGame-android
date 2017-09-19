@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/randomNumberTV"
-            android:textSize="70sp"
+            android:textSize="45sp"
             android:textColor="@color/orange"
             android:textStyle="bold"
             fontPath="fonts/Jelly Crazies.ttf"
@@ -93,7 +93,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        app:layout_widthPercent="80%"
+        app:layout_widthPercent="70%"
         app:layout_heightPercent="50%"
         android:id="@+id/calculator_container"
         android:layout_below="@+id/title_container"
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:text="Operadores permitidos: +,/"
             android:layout_centerHorizontal="true"/>
 
