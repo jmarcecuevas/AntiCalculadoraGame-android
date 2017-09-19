@@ -52,6 +52,7 @@ public class MenuFragment extends LuckyFragment{
                 menuListener.play();
                 break;
             case R.id.ranking:
+                menuListener.onChangeFragment(StatisticsFragment.class);
                 break;
             case R.id.settings:
                 menuListener.onChangeFragment(SettingsFragment.class);

@@ -11,6 +11,7 @@ import com.luckycode.myanticalculadora.R;
 import com.luckycode.myanticalculadora.common.LuckyActivity;
 import com.luckycode.myanticalculadora.ui.fragment.GameFragment;
 import com.luckycode.myanticalculadora.ui.fragment.SettingsFragment;
+import com.luckycode.myanticalculadora.ui.fragment.StatisticsFragment;
 import com.luckycode.myanticalculadora.utils.MusicManager;
 
 import butterknife.BindView;
@@ -45,6 +46,7 @@ public class GameActivity extends LuckyActivity implements BottomNavigationView.
                 replaceFragmentWithBackStack(GameFragment.class,false);
                 return true;
             case R.id.navigation_ranking:
+                replaceFragmentWithBackStack(StatisticsFragment.class,false);
                 return true;
             case R.id.navigation_settings:
                 replaceFragmentWithBackStack(SettingsFragment.class,false);

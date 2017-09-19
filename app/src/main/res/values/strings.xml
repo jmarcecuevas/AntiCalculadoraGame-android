@@ -21,4 +21,9 @@
     <string name="userWon">Felicitaciones, has logrado completar tu mision.</string>
     <string name="userWonTitle">FELICITACIONES, HAS GANADO!!!</string>
     <string name="goOn">Continuar</string>
+    <string name="statistics">ESTADÍSTICAS</string>
+    <string name="gamesPlayed">Partidas jugadas</string>
+    <string name="wonGames">Partidas ganadas</string>
+    <string name="lostGames">Partidas perdidas</string>
+    <string name="maxLevel">Nivel máximo alcanzado</string>
 </resources>
