@@ -1,7 +1,6 @@
 package com.luckycode.myanticalculadora.ui.fragment;
 
 import android.support.v7.widget.SwitchCompat;
-import android.util.Log;
 import android.widget.CompoundButton;
 
 import com.luckycode.myanticalculadora.R;
@@ -16,10 +15,11 @@ import butterknife.BindView;
  * Created by marcelocuevas on 9/16/17.
  */
 
-public class SettingsFragment extends LuckyFragment implements SettingsView,CompoundButton.OnCheckedChangeListener{
-    @BindView(R.id.musicSwitcher) SwitchCompat musicSwitcher;
-    @BindView(R.id.soundsSwitcher) SwitchCompat soundsSwitcher;
-    @BindView(R.id.vibrationSwitcher) SwitchCompat vibrationSwitcher;
+public class SettingsFragment extends LuckyFragment implements SettingsView, CompoundButton.OnCheckedChangeListener {
+    @BindView(R.id.musicSwitcher)
+    SwitchCompat musicSwitcher;
+    @BindView(R.id.soundsSwitcher)
+    SwitchCompat soundsSwitcher;
     private SettingsPresenter presenter;
 
 
@@ -30,27 +30,22 @@ public class SettingsFragment extends LuckyFragment implements SettingsView,Comp
 
     @Override
     protected void init() {
-        SettingsInteractor settingsInteractor=new SettingsInteractor(presenter,getContext());
-        presenter=new SettingsPresenter(this,settingsInteractor);
+        SettingsInteractor settingsInteractor = new SettingsInteractor(presenter, getContext());
+        presenter = new SettingsPresenter(this, settingsInteractor);
         musicSwitcher.setChecked(presenter.getMusicState());
-        soundsSwitcher.setChecked(presenter.getSoundsState());
-        vibrationSwitcher.setChecked(presenter.getVibrationState());
+        soundsSwitcher.setChecked(presenter.getSoundState());
         musicSwitcher.setOnCheckedChangeListener(this);
         soundsSwitcher.setOnCheckedChangeListener(this);
-        vibrationSwitcher.setOnCheckedChangeListener(this);
     }
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        switch (compoundButton.getId()){
+        switch (compoundButton.getId()) {
             case R.id.musicSwitcher:
                 presenter.onMusicPreferencesChanged(b);
                 break;
             case R.id.soundsSwitcher:
                 presenter.onSoundsPreferencesChanged(b);
-                break;
-            case R.id.vibrationSwitcher:
-                presenter.onVibrationPreferencesChanged(b);
                 break;
         }
     }

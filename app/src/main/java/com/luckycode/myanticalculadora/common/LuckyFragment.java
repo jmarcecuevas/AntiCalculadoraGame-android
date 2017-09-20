@@ -18,8 +18,8 @@ public abstract class LuckyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v= inflater.inflate(layout(),container,false);
-        ButterKnife.bind(this,v);
+        View v = inflater.inflate(layout(), container, false);
+        ButterKnife.bind(this, v);
         init();
         return v;
     }
@@ -28,7 +28,6 @@ public abstract class LuckyFragment extends Fragment {
 
 
     protected abstract void init();
-
 
 
 }

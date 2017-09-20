@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.luckycode.myanticalculadora.R;
 import com.luckycode.myanticalculadora.common.LuckyActivity;
-import com.luckycode.myanticalculadora.common.LuckyPresenter;
 import com.luckycode.myanticalculadora.presenter.MenuPresenter;
 
 public class MainActivity extends LuckyActivity {

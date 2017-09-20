@@ -7,5 +7,4 @@ package com.luckycode.myanticalculadora.ui.viewModel;
 public interface SettingsView {
 
 
-
 }

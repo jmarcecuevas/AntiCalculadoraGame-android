@@ -22,7 +22,7 @@ public class LuckyCodeApp extends Application {
                 .build());
     }
 
-    public static LuckyCodeApp getApp(Context context){
+    public static LuckyCodeApp getApp(Context context) {
         return (LuckyCodeApp) context.getApplicationContext();
     }
 

@@ -8,15 +8,15 @@ public class LuckyPresenter<T> {
 
     private T mView;
 
-    public LuckyPresenter(T mView){
-        this.mView=mView;
+    public LuckyPresenter(T mView) {
+        this.mView = mView;
     }
 
-    protected T getView(){
+    protected T getView() {
         return mView;
     }
 
-    public void detachView(){
-        mView=null;
+    public void detachView() {
+        mView = null;
     }
 }

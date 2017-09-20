@@ -1,20 +1,16 @@
 package com.luckycode.myanticalculadora.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.luckycode.myanticalculadora.R;
-import com.luckycode.myanticalculadora.listeners.MenuListener;
 import com.luckycode.myanticalculadora.common.LuckyActivity;
+import com.luckycode.myanticalculadora.listeners.MenuListener;
 import com.luckycode.myanticalculadora.ui.fragment.MenuFragment;
-import com.luckycode.myanticalculadora.utils.MusicManager;
 
-public class MenuActivity extends LuckyActivity implements MenuListener{
+public class MenuActivity extends LuckyActivity implements MenuListener {
 
     @Override
     protected void init() {
-      MusicManager.start(this,0,false,true);
     }
 
     @Override
@@ -39,15 +35,15 @@ public class MenuActivity extends LuckyActivity implements MenuListener{
 
     @Override
     public void play() {
-        Intent intent=new Intent(this,GameActivity.class);
-        overridePendingTransition(R.anim.pull_in_left,R.anim.pull_in_right);
+        Intent intent = new Intent(this, GameActivity.class);
+        overridePendingTransition(R.anim.pull_in_left, R.anim.pull_in_right);
         startActivity(intent);
         finish();
     }
 
     @Override
     public void onChangeFragment(Class fragment) {
-        replaceFragmentWithBackStack(fragment,true);
+        replaceFragmentWithBackStack(fragment, true);
     }
 
     @Override

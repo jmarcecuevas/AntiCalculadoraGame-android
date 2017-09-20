@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.luckycode.myanticalculadora.R;
+import com.luckycode.myanticalculadora.utils.DatabaseHelper;
 
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -21,6 +23,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 
 public abstract class LuckyActivity extends AppCompatActivity {
+    protected DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public abstract class LuckyActivity extends AppCompatActivity {
 
 
     @Override
-    public void startActivity(Intent intent){
+    public void startActivity(Intent intent) {
         super.startActivity(intent);
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
@@ -67,8 +70,8 @@ public abstract class LuckyActivity extends AppCompatActivity {
         Fragment myNewFragment = Fragment.instantiate(getApplicationContext(), myNewFragmentClass.getName());
         String newFragment = myNewFragment.getClass().getName();
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-        if (withBackstack){
-            t.setCustomAnimations(R.anim.pull_in_right,R.anim.push_out_left,R.anim.pull_in_left, R.anim.push_out_right);
+        if (withBackstack) {
+            t.setCustomAnimations(R.anim.pull_in_right, R.anim.push_out_left, R.anim.pull_in_left, R.anim.push_out_right);
             t.addToBackStack(newFragment);
         }
         t.add(getFragmentLayout(), myNewFragment, newFragment);
@@ -80,8 +83,8 @@ public abstract class LuckyActivity extends AppCompatActivity {
         Fragment myNewFragment = Fragment.instantiate(getApplicationContext(), myNewFragmentClass.getName());
         String newFragment = myNewFragment.getClass().getName();
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-        if (withBackstack){
-            t.setCustomAnimations(R.anim.pull_in_right,R.anim.push_out_left,R.anim.pull_in_left, R.anim.push_out_right);
+        if (withBackstack) {
+            t.setCustomAnimations(R.anim.pull_in_right, R.anim.push_out_left, R.anim.pull_in_left, R.anim.push_out_right);
             t.addToBackStack(newFragment);
         }
         t.replace(getFragmentLayout(), myNewFragment, newFragment);
@@ -93,13 +96,29 @@ public abstract class LuckyActivity extends AppCompatActivity {
         Fragment myNewFragment = Fragment.instantiate(getApplicationContext(), myNewFragmentClass.getName());
         String newFragment = myNewFragment.getClass().getName();
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-        t.setCustomAnimations(R.anim.pull_in_right,R.anim.push_out_left,R.anim.pull_in_left, R.anim.push_out_right);
-        if (withBackstack){
+        t.setCustomAnimations(R.anim.pull_in_right, R.anim.push_out_left, R.anim.pull_in_left, R.anim.push_out_right);
+        if (withBackstack) {
             t.addToBackStack(newFragment);
         }
         t.replace(getFragmentLayout(), myNewFragment, newFragment);
         t.commit();
         return myNewFragment;
+    }
+
+    public DatabaseHelper getHelper() {
+        if (dbHelper == null) {
+            dbHelper = OpenHelperManager.getHelper(getApplicationContext(), DatabaseHelper.class);
+        }
+        return dbHelper;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (dbHelper != null) {
+            OpenHelperManager.releaseHelper();
+            dbHelper = null;
+        }
     }
 
 }

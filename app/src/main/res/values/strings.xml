@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyAntiCalculadora</string>
+    <string name="app_name">AntiCalculadora</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -26,4 +26,5 @@
     <string name="wonGames">Partidas ganadas</string>
     <string name="lostGames">Partidas perdidas</string>
     <string name="maxLevel">Nivel máximo alcanzado</string>
+    <string name="levelsCompleted">Felicitaciones, has completado el juego. Si quieres volver a intentarlo por favor dale a continuar</string>
 </resources>

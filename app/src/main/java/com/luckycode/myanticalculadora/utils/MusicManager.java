@@ -1,9 +1,7 @@
 package com.luckycode.myanticalculadora.utils;
 
 import android.content.Context;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.util.Log;
 
 import com.luckycode.myanticalculadora.R;
@@ -21,16 +19,16 @@ public class MusicManager {
     private static final int MUSIC_PREVIOUS = -1;
     private static final int MUSIC_MENU = 0;
     private static final int MUSIC_WON = 1;
-    private static final int MUSIC_GAMEOVER=2;
-    private static final int MUSIC_SWIPE=3;
-    private static final int MUSIC_ERROR=4;
+    private static final int MUSIC_GAMEOVER = 2;
+    private static final int MUSIC_SWIPE = 3;
+    private static final int MUSIC_ERROR = 4;
 
-    private static HashMap players = new HashMap<Integer,MediaPlayer>();
+    private static HashMap players = new HashMap<Integer, MediaPlayer>();
     private static int currentMusic = -1;
     private static int previousMusic = -1;
 
 
-    public static void start(Context context, int music, boolean force,boolean looped) {
+    public static void start(Context context, int music, boolean force, boolean looped) {
         if (!force && currentMusic > -1) {
             return;
         }
@@ -53,11 +51,11 @@ public class MusicManager {
                 mp = MediaPlayer.create(context, R.raw.win);
             } else if (music == MUSIC_GAMEOVER) {
                 mp = MediaPlayer.create(context, R.raw.game_over);
-            } else if(music==MUSIC_SWIPE) {
+            } else if (music == MUSIC_SWIPE) {
                 mp = MediaPlayer.create(context, R.raw.swipe);
-            }else if(music==MUSIC_ERROR){
-                mp=MediaPlayer.create(context,R.raw.error);
-            }else{
+            } else if (music == MUSIC_ERROR) {
+                mp = MediaPlayer.create(context, R.raw.error);
+            } else {
                 Log.e(TAG, "unsupported music number - " + music);
                 return;
             }
@@ -83,12 +81,12 @@ public class MusicManager {
         Log.d(TAG, "Current music is now [" + currentMusic + "]");
     }
 
-    public static void pause(int music){
+    public static void pause(int music) {
         Collection<MediaPlayer> mps = players.values();
         for (MediaPlayer p : mps) {
-            if (players.get(music).equals(p)){
-                p.pause();
-            }
+            if (players.get(music) != null)
+                if (players.get(music).equals(p))
+                    p.pause();
         }
     }
 }

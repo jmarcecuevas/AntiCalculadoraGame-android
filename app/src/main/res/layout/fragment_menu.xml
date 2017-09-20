@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingPrefix">
 
-   <ImageView
-       app:layout_widthPercent="100%"
-       app:layout_heightPercent="100%"
-       android:src="@drawable/backgroundddredimensionado"
-       android:scaleType="centerCrop">
-   </ImageView>
+    <ImageView
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="100%"
+        android:src="@drawable/backgroundddredimensionado"
+        android:scaleType="centerCrop"></ImageView>
 
     <!--<ImageView-->
-        <!--app:layout_widthPercent="100%"-->
-        <!--app:layout_heightPercent="100%"-->
-        <!--android:src="@drawable/background3"-->
-        <!--android:alpha="0.1"-->
-        <!--android:scaleType="centerCrop">-->
+    <!--app:layout_widthPercent="100%"-->
+    <!--app:layout_heightPercent="100%"-->
+    <!--android:src="@drawable/background3"-->
+    <!--android:alpha="0.1"-->
+    <!--android:scaleType="centerCrop">-->
     <!--</ImageView>-->
 
     <RelativeLayout
@@ -39,10 +37,10 @@
                 fontPath="fonts/Jelly Crazies.ttf"
                 android:id="@+id/antiTV"
                 android:text="@string/anti"
-                android:textColor="#ffffff"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textStyle="bold"
                 android:layout_centerHorizontal="true"
-                android:textSize="40sp"/>
+                android:textSize="40sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,15 +50,15 @@
                 fontPath="fonts/Jelly Crazies.ttf"
                 android:text="@string/calculator"
                 android:layout_centerHorizontal="true"
-                android:textColor="#ffffff"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textStyle="bold"
-                android:textSize="25sp"/>
+                android:textSize="20sp" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/calculatorTV"
-                android:src="@drawable/kids_math"/>
+                android:src="@drawable/kids_math" />
 
         </RelativeLayout>
 
@@ -78,8 +76,7 @@
             app:layout_heightPercent="20%"
             android:id="@+id/arrow"
             android:src="@drawable/flecha_naranjaredimensionado"
-            android:layout_toLeftOf="@+id/play"
-            />
+            android:layout_toLeftOf="@+id/play" />
 
         <Button
             app:layout_widthPercent="55%"
@@ -104,7 +101,7 @@
             android:background="@drawable/oval_button"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:text="@string/ranking">
+            android:text="@string/statistics">
 
         </Button>
 
@@ -137,8 +134,6 @@
         </Button>
 
     </android.support.percent.PercentRelativeLayout>
-
-
 
 
 </android.support.percent.PercentRelativeLayout>
